@@ -1,0 +1,84 @@
+# Linux Essential Commands - Cheat Sheet
+
+1. pwd
+   → Print the current working directory (where you are).
+   Example: pwd
+
+2. ls
+   → List files and directories in the current folder.
+   Example: ls -l    # detailed list with permissions, size, and dates
+
+3. cd <directory>
+   → Change directory.
+   Example: cd /home/user/Documents
+
+4. mkdir <name>
+   → Create a new directory.
+   Example: mkdir myfolder
+
+5. rmdir <name>
+   → Remove an empty directory.
+   Example: rmdir oldfolder
+
+6. rm <file>
+   → Delete a file (⚠️ use carefully).
+   Example: rm notes.txt
+
+7. rm -r <directory>
+   → Delete a directory and its contents recursively.
+   → May ask for confirmation before removing certain files.
+   Example: rm -r myfolder
+
+8. rm -rf <directory>
+   → Delete a directory and its contents recursively and forcibly.
+   → No confirmation will be asked, and errors are ignored.
+   ⚠️ DANGER: A wrong usage (e.g., rm -rf /) can wipe the entire system.
+   Example: rm -rf temp
+
+9. cp <source> <destination>
+   → Copy files or directories.
+   Example: cp file.txt backup.txt
+            cp -r myfolder backup_folder
+
+10. mv <source> <destination>
+    → Move or rename files/directories.
+    Example: mv file.txt /home/user/Documents/
+             mv oldname.txt newname.txt
+
+11. cat <file>
+    → Display file content in the terminal.
+    Example: cat notes.txt
+
+12. less <file>
+    → View file content page by page.
+    Example: less longfile.txt
+
+13. head -n 10 <file>
+    → Show the first 10 lines of a file.
+    Example: head -n 10 log.txt
+
+14. tail -n 10 <file>
+    → Show the last 10 lines of a file.
+    Example: tail -n 10 log.txt
+
+15. grep "text" <file>
+    → Search for "text" inside a file.
+    Options:
+      -i → case insensitive
+      -n → show line numbers
+      -r → search recursively in directories
+      -v → show lines that do NOT match
+    Examples:
+      grep "error" log.txt
+      grep -i "hello" notes.txt
+      grep -n "main" source.java
+      grep -r "TODO" ./project
+
+16. chmod +x <file>
+    → Change permissions (make a script executable).
+    Example: chmod +x script.sh
+
+17. chown <user>:<group> <file>
+    → Change the owner and group of a file or directory.
+    Example: chown root:root secure.txt
+             chown user1:user1 myfolder/ -R   # change recursively
