@@ -1,0 +1,6 @@
+# Exemple de .gitignore
+*.log
+*.class
+*.iml
+/.idea/
+/target/

@@ -1,0 +1,90 @@
+# Initialize a local repository
+git init
+# Creates a new Git repository in your folder, starting version control.
+
+# Clone a remote repository
+git clone <repo-url>
+# Copies a remote repo to your local machine for development.
+
+# Check the repository status
+git status
+# Shows which files are staged, modified, or untracked.
+
+# Add files to staging
+git add <file>
+# Stages a specific file to be included in the next commit.
+git add .   # add all files
+# Stages all changes in the repository for the next commit.
+
+# Commit changes
+git commit -m "commit message"
+# Records staged changes in the repository history with a descriptive message.
+
+# View commit history
+git log
+# Shows a detailed list of all commits.
+git log --oneline --graph --decorate
+# Shows a compact, visual graph of commits and branches.
+
+# Create and switch branches
+git branch feature-branch
+# Creates a new branch called 'feature-branch'.
+git checkout feature-branch
+# Switches to the 'feature-branch'.
+git checkout -b feature-branch   # create + switch
+# Creates a new branch and immediately switches to it.
+
+# Merge a branch
+git checkout main
+# Switches to the main branch to prepare for merge.
+git merge feature-branch
+# Merges the changes from 'feature-branch' into 'main'.
+
+# Rebase a branch onto main
+git checkout feature-branch
+# Switches to the branch to be rebased.
+git rebase main
+# Moves your branch changes on top of the main branch for a clean history.
+
+# Add a remote repository
+git remote add origin <url>
+# Links your local repo to a remote repository on GitHub/GitLab.
+
+# Push changes
+git push -u origin main
+# Uploads your local commits to the remote repository for the first time.
+
+# Pull or fetch from remote
+git pull
+# Fetches and merges remote changes into your local branch.
+git fetch
+# Downloads remote changes without merging, for review.
+
+# Ignore files/folders with .gitignore
+# Create a file named '.gitignore' in your repo root and list files/folders to ignore.
+# Example:
+#   /target/          -> ignore build output folder
+#   *.log             -> ignore all log files
+#   secret-config.yml -> ignore sensitive config
+# Then commit .gitignore:
+git add .gitignore
+git commit -m "chore: add .gitignore file"
+# This prevents unwanted files from being tracked in your repository.
+
+# Alternative methods to ignore files
+
+# 1. git rm --cached
+# Removes a file from Git tracking but keeps it locally.
+# Useful if a file was already committed but should now be ignored.
+git rm --cached filename
+# Then add it to .gitignore to prevent future tracking.
+
+# 2. .git/info/exclude
+# Local ignore rules that are not versioned.
+# Ideal for ignoring files only on your local machine.
+# Example: add /local-config.yml to .git/info/exclude
+
+# 3. git update-index --assume-unchanged
+# Tells Git to temporarily ignore changes to a tracked file.
+git update-index --assume-unchanged filename
+# Useful for local config files that differ from repo defaults.
