@@ -19,7 +19,7 @@ roadmap-fullstack/
 ├─ week1/ -> Technical Foundations: Git, Linux, Java basics ⚙️
 │  ├─ day1-git/ -> Create GitHub repo, init Java project ✅
 │  ├─ day2-linux/ -> 15 essential Linux commands ✅
-│  ├─ day3-java/ -> Java 21 records, switch, streams ⏳
+│  ├─ day3-java/ -> Java 21 records, switch, streams ✅
 │  ├─ day4-http/ -> HTTP/REST concepts, /hello endpoint ⏳
 │  ├─ day5-tests/ -> JUnit 5, simple tests ⏳
 │  ├─ day6-miniapi/ -> Notes CRUD with Spring Boot ⏳
