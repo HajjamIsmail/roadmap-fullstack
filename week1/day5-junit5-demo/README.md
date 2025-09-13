@@ -1,159 +1,270 @@
 
 ---
 
-# 🧪 Documentation — Introduction to Unit Testing with JUnit 5
+# 🧪 Documentation — Unit Testing with JUnit 5
 
 ---
 
 ## 1) 📌 Why We Write Unit Tests
 
-In software development, **unit tests** are small programs that verify that a single unit (usually a method or class) works correctly.
+Unit tests are small programs that verify **a single piece of functionality** (usually a method or class) works correctly.
 
-**Their role:**
+**Benefits:**
 
-* 🛡️ **Prevent regressions**: Detect bugs early when you change your code.
-* ⚡ **Speed up development**: Instant feedback on what works and what is broken.
-* 📚 **Serve as documentation**: Show how your code is supposed to be used.
-* 🔁 **Enable refactoring**: You can safely improve code without breaking existing logic.
+* 🛡️ **Prevent regressions:** Catch bugs early when code changes.
+* ⚡ **Accelerate development:** Instant feedback on code correctness.
+* 📚 **Serve as documentation:** Show how the code is intended to be used.
+* 🔁 **Enable refactoring safely:** Refactor with confidence knowing tests verify behavior.
 
-> **Analogy**: Like quality checks on a production line — every part must be tested before assembling the whole system.
-
----
-
-## 2) ⚙️ What  Does
-
-**JUnit 5** is the most widely used testing framework in the  ecosystem.
-It allows you to:
-
-* Write **test methods** easily
-* Execute them automatically
-* Show results (✅ passed, ❌ failed, ⚠️ skipped)
-* Integrate with build tools like  and IDEs like&#x20;
-
-> In short, JUnit provides the structure and tools for writing and running automated tests.
+> Think of unit tests like **quality checks** for every part of your code.
 
 ---
 
-## 3) 📁 Project Structure ()
+## 2) ⚙️ What JUnit 5 Does
+
+JUnit 5 is a popular testing framework for Java. It allows you to:
+
+* Write test methods easily
+* Run tests automatically
+* Report results (passed / failed / skipped)
+* Integrate with Maven and IDEs like IntelliJ IDEA
+
+> In short, it provides the **structure and tools** for automated testing.
+
+---
+
+## 3) 📁 Project Structure
 
 ```
-my-bank-project/
+my-junit5-demo/
+├── pom.xml                    ← Maven dependencies & build
 ├── src/
-│   ├── main/
-│   │   └── java/com/example/BankAccount.java   ← main business class
-│   └── test/
-│       └── java/com/example/BankAccountTest.java ← test class
-└── pom.xml   ← dependencies + build configuration
+│   ├── main/java/com/example/
+│   │   ├── BankAccount.java   ← Production code
+│   │   └── Main.java          ← Main class
+│   └── test/java/com/example/
+│       └── BankAccountTest.java ← Test class
 ```
 
-* `src/main/java` → contains **production code**
-* `src/test/java` → contains **unit test code**
-* `pom.xml` → declares `junit-jupiter` (JUnit 5) as a dependency
+* `src/main/java` → production code
+* `src/test/java` → unit test code
+* `pom.xml` → declares JUnit 5 dependency
 
 ---
 
-## 4) 💰 `BankAccount` Class (Production Code)
+## 4) 💰 `BankAccount.java` — Production Code
 
 ```java
 package com.example;
 
 public class BankAccount {
+
+    private String owner;
     private double balance;
 
-    public BankAccount(double initialBalance) {
+    public BankAccount(String owner, double initialBalance) {
+        this.owner = owner;
         this.balance = initialBalance;
     }
 
-    public void deposit(double amount) {
-        if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
-        balance += amount;
-    }
-
-    public void withdraw(double amount) {
-        if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
-        if (amount > balance) throw new IllegalStateException("Insufficient balance");
-        balance -= amount;
+    public String getOwner() {
+        return owner;
     }
 
     public double getBalance() {
         return balance;
     }
+
+    // Deposit money into the account
+    public void deposit(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Deposit amount must be > 0");
+        }
+        balance += amount;
+    }
+
+    // Withdraw money if balance is sufficient
+    public void withdraw(double amount) {
+        if (amount > balance) {
+            throw new IllegalArgumentException("Insufficient balance");
+        }
+        balance -= amount;
+    }
+
+    // Check if account is overdrawn
+    public boolean isOverdrawn() {
+        return balance < 0;
+    }
 }
 ```
 
-**Keywords explained:**
+**Key points in the code:**
 
-* `public class BankAccount` → the class we want to test
-* `private double balance` → internal state
-* `deposit` / `withdraw` → business logic with validations
+* `private double balance` → internal state of the account
+* `deposit` / `withdraw` → main business logic with validation
 * `throw new IllegalArgumentException(...)` → signals invalid input
-* `throw new IllegalStateException(...)` → signals incorrect state (e.g. not enough funds)
 
 ---
 
-## 5) ✅ `BankAccountTest` Class (Test Code)
+## 5) 🚀 `Main.java` — Running the Application
 
 ```java
 package com.example;
 
-import org.junit.jupiter.api.*; // JUnit 5 annotations
-import static org.junit.jupiter.api.Assertions.*;
+public class Main {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount("Ismail", 1000);
+        account.deposit(500);
+        account.withdraw(200);
 
-class BankAccountTest {
-
-    @Test
-    void depositShouldIncreaseBalance() {
-        BankAccount account = new BankAccount(100);
-        account.deposit(50);
-        assertEquals(150, account.getBalance());
-    }
-
-    @Test
-    void withdrawShouldDecreaseBalance() {
-        BankAccount account = new BankAccount(100);
-        account.withdraw(40);
-        assertEquals(60, account.getBalance());
-    }
-
-    @Test
-    void withdrawShouldFailIfInsufficientFunds() {
-        BankAccount account = new BankAccount(50);
-        assertThrows(IllegalStateException.class, () -> account.withdraw(100));
-    }
-
-    @Test
-    @Disabled("Feature not implemented yet")
-    void futureFeatureTest() {
-        // this test will be skipped
+        System.out.println("Owner: " + account.getOwner());
+        System.out.println("Final balance: " + account.getBalance());
     }
 }
 ```
 
-**Important keywords and annotations:**
-
-* `@Test` → Marks a method as a unit test
-* `assertEquals(expected, actual)` → Checks that values are equal
-* `assertThrows(Exception.class, () -> ...)` → Verifies an exception is thrown
-* `@Disabled` → Temporarily skip this test
-* `org.junit.jupiter.api.*` → JUnit 5’s API package
-
-> Each method tests a **single behavior** of `BankAccount`.
+> This class demonstrates a simple **manual execution** of the BankAccount methods.
 
 ---
 
-## 6) 📝 Summary
+## 6) 🧪 `BankAccountTest.java` — Unit Tests with JUnit 5
 
-| Concept         | Description                              |
-| --------------- | ---------------------------------------- |
-| Unit Test       | Small, isolated test on a method/class   |
-| JUnit 5         | Framework to write and run tests in Java |
-| `@Test`         | Marks a method as a test                 |
-| `assertEquals`  | Verifies two values are equal            |
-| `assertThrows`  | Verifies an exception is thrown          |
-| `@Disabled`     | Skips a test temporarily                 |
-| `src/test/java` | Folder for all test classes              |
+```java
+package com.example;
 
-✅ **Goal:** Guarantee that each small part of your program works perfectly and automatically detect bugs when you change code.
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+// Using PER_CLASS lifecycle allows @BeforeAll/@AfterAll to be non-static
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class BankAccountTest {
+
+    BankAccount account;
+
+    // Runs once before all tests in the class
+    @BeforeAll
+    void initAll() {
+        System.out.println("==> Global test initialization");
+    }
+
+    // Runs before each test method
+    @BeforeEach
+    void init() {
+        account = new BankAccount("Ismail", 1000);
+        System.out.println("-> New account created for test");
+    }
+
+    // Runs after each test method
+    @AfterEach
+    void tearDown() {
+        System.out.println("<- Test finished");
+    }
+
+    // Runs once after all tests in the class
+    @AfterAll
+    void tearDownAll() {
+        System.out.println("==> Global test cleanup");
+    }
+
+    // Regular test
+    @Test
+    void testDeposit() {
+        account.deposit(500);
+        assertEquals(1500, account.getBalance(), "Balance should be 1500 after deposit");
+    }
+
+    // Regular test
+    @Test
+    void testWithdraw() {
+        account.withdraw(200);
+        assertEquals(800, account.getBalance(), "Balance should be 800 after withdrawal");
+    }
+
+    // Test that expects an exception
+    @Test
+    void testWithdrawTooMuchThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(2000),
+                "Should throw exception if balance is insufficient");
+    }
+
+    // Grouped assertions
+    @Test
+    void testMultipleAssertions() {
+        account.deposit(100);
+        account.withdraw(50);
+
+        assertAll(
+                () -> assertEquals(1050, account.getBalance()),
+                () -> assertFalse(account.isOverdrawn()),
+                () -> assertEquals("Ismail", account.getOwner())
+        );
+    }
+
+    // Parameterized test
+    @ParameterizedTest
+    @ValueSource(doubles = {100, 200, 300})
+    void testParameterizedDeposit(double amount) {
+        account.deposit(amount);
+        assertTrue(account.getBalance() >= 1100, "Balance should be >= 1100");
+    }
+
+    // Skipped test
+    @Disabled("Work in progress")
+    @Test
+    void testDisabled() {
+        fail("This test should not run");
+    }
+}
+```
 
 ---
 
+## 7) 🔑 Explanation of Annotations Used
+
+| Annotation                                        | Purpose / Description                                              |
+| ------------------------------------------------- | ------------------------------------------------------------------ |
+| `@Test`                                           | Marks a method as a unit test                                      |
+| `@BeforeEach`                                     | Runs **before each test method**                                   |
+| `@AfterEach`                                      | Runs **after each test method**                                    |
+| `@BeforeAll`                                      | Runs **once before all tests** (can be non-static with PER\_CLASS) |
+| `@AfterAll`                                       | Runs **once after all tests**                                      |
+| `@Disabled`                                       | Skips the test temporarily                                         |
+| `@ParameterizedTest`                              | Runs a test multiple times with different inputs                   |
+| `@ValueSource`                                    | Provides literal values for parameterized tests                    |
+| `@TestInstance(TestInstance.Lifecycle.PER_CLASS)` | Allows `@BeforeAll`/`@AfterAll` methods to be non-static           |
+
+---
+
+## 8) ▶️ Running the Tests
+
+```bash
+mvn clean test
+```
+
+**Example output:**
+
+```
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 1
+```
+
+> Skipped test corresponds to the `@Disabled` test. All other tests passed successfully.
+
+---
+
+## 9) 📝 Summary
+
+* Unit tests verify **small units of code** independently.
+* JUnit 5 provides **annotations and assertions** to organize, execute, and validate tests.
+* Maven automatically detects tests in `src/test/java` and runs them via the `surefire` plugin.
+* Key practices:
+
+    * Test one behavior per method
+    * Use `assertThrows` to check exceptions
+    * Use `assertAll` for multiple related checks
+    * Use `@ParameterizedTest` for multiple input scenarios
+    * Skip incomplete tests with `@Disabled`
+
+---
