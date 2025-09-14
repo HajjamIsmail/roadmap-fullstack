@@ -3,15 +3,15 @@ name: Java CI - Mini Project
 on:
   push:
     paths:
-      - 'day7-github-action/**'
+      - 'week1/day7-github-action/**'
   pull_request:
     paths:
-      - 'day7-github-action/**'
+      - 'week1/day7-github-action/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    working-directory: day7-github-action
+    working-directory: week1/day7-github-action
 
     steps:
       - name: Checkout repository
