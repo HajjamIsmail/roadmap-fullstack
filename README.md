@@ -22,7 +22,7 @@ roadmap-fullstack/
 │  ├─ day3-java/ -> Java 21 records, switch, streams ✅
 │  ├─ day4-http/ -> HTTP/REST concepts, /hello endpoint ✅
 │  ├─ day5-tests/ -> JUnit 5, simple tests ✅
-│  ├─ day6-miniapi/ -> Notes CRUD with Spring Boot ⏳
+│  ├─ day6-miniapi/ -> Notes CRUD with Spring Boot ✅
 │  └─ day7-cicd/ -> GitHub Actions (build + test) ⏳
 │
 ├─ week2/ -> Advanced Concepts: Git, Java, Tests, CI/CD ⏳
