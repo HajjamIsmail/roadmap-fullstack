@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "dcf82c72-3789-4696-ae73-e5e7a3074d25",
+		"name": "notes-rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24410491"
+	},
+	"item": [
+		{
+			"name": "create-notes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Learn Spring Boot\",\r\n  \"content\": \"Build a REST API using Spring Boot 3.4 and PostgreSQL.\"\r\n}\r\n\r\n// {\r\n//   \"title\": \"Master PostgreSQL\",\r\n//   \"content\": \"Understand SQL, schemas, users, and database design.\"\r\n// }\r\n\r\n\r\n// {\r\n//   \"title\": \"Java 21 Features\",\r\n//   \"content\": \"Practice using records, switch expressions, and streams.\"\r\n// }\r\n\r\n// {\r\n//   \"title\": \"Unit Testing with JUnit 5\",\r\n//   \"content\": \"Write unit tests and use assertions effectively.\"\r\n// }\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/notes"
+			},
+			"response": []
+		},
+		{
+			"name": "get All notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/notes"
+			},
+			"response": []
+		},
+		{
+			"name": "get notes by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/notes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "get summary notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/notes/summary"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Updated Spring Boot Note\",\r\n  \"content\": \"Updated content for testing PUT method.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/notes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Notes",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/notes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Titles in Uppercase",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/notes/titles/uppercase"
+			},
+			"response": []
+		}
+	]
+}
