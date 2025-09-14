@@ -3,7 +3,7 @@
 
 # 📝 Notes API Project Documentation
 
-## 1️⃣ Introduction
+## 1 Introduction
 
 This project demonstrates the creation of a **complete REST API for managing notes**.
 The main objectives are to:
@@ -18,7 +18,7 @@ This mini-project provides a clear example of Spring concepts, JPA, and database
 
 ---
 
-## 2️⃣ Technologies and Versions Used
+## 2 Technologies and Versions Used
 
 | Technology                  | Version         | Role                                                                               |
 | --------------------------- | --------------- | ---------------------------------------------------------------------------------- |
@@ -31,7 +31,7 @@ This mini-project provides a clear example of Spring concepts, JPA, and database
 
 ---
 
-## 3️⃣ Project Architecture
+## 3 Project Architecture
 
 The project follows **best practices for Spring Boot**:
 
@@ -85,7 +85,7 @@ notes-api/
 
 ---
 
-## 4️⃣ Keywords and Annotations Used
+## 4 Keywords and Annotations Used
 
 | Keyword / Annotation                                           | Explanation                                         |
 | -------------------------------------------------------------- | --------------------------------------------------- |
@@ -103,7 +103,7 @@ notes-api/
 
 ---
 
-## 5️⃣ PostgreSQL Configuration
+## 5 PostgreSQL Configuration
 
 ### 1. Create Database and User
 
@@ -111,7 +111,7 @@ Open `psql` or PgAdmin and execute:
 
 ```sql
 -- Create the database
-CREATE DATABASE notes_db;
+CREATE DATABASE notes_db OWNER notes_user;
 
 -- Create the user
 CREATE USER notes_user WITH PASSWORD '1234';
@@ -145,7 +145,62 @@ server.port=8080
 
 ---
 
-## 6️⃣ Conclusion
+## 6 Testing
+
+**1. Unit Tests (Service Layer)**
+
+* Test CRUD operations, summary, and uppercase title logic.
+* Use **Mockito** to mock the repository.
+* Example: `NoteServiceTest.java`
+
+**2. Controller Tests (Integration with MockMvc)**
+
+* Test HTTP endpoints.
+* Mock service layer to isolate controller logic.
+* Example: `NoteControllerTest.java`
+
+**3. Running Tests**
+
+* **IntelliJ:** Right-click on the test class or folder → Run tests.
+* **Maven CLI:**
+
+```bash
+mvn test
+```
+
+* Run a single test class:
+
+```bash
+mvn -Dtest=NoteServiceTest test
+```
+
+**Best Practices**
+
+* Unit tests isolate business logic.
+* Integration tests validate HTTP endpoints and controller-service interaction.
+* Keep a separate test database or use H2 in-memory DB to avoid affecting production data.
+
+---
+
+## 7 Keywords & Annotations (Testing)
+
+| Keyword / Annotation    | Role                                             |
+| ----------------------- | ------------------------------------------------ |
+| `@SpringBootTest`       | Loads the Spring context for integration tests   |
+| `@AutoConfigureMockMvc` | Auto-configures MockMvc for controller tests     |
+| `@MockBean`             | Creates a mock Spring bean to isolate tests      |
+| `@Test`                 | Marks a method as a JUnit 5 test method          |
+| `@BeforeEach`           | Runs a setup method before each test             |
+| `assertEquals()`        | JUnit assertion to check equality                |
+| `assertTrue()`          | JUnit assertion to check a condition is true     |
+| `Mockito.when()`        | Define mock behavior for a method call           |
+| `Mockito.verify()`      | Verify a method call on a mock object            |
+| `MockMvc.perform()`     | Perform HTTP requests in controller tests        |
+| `content().json()`      | Verify JSON response content in controller tests |
+
+---
+
+## 8 Conclusion
 
 * This project demonstrates a **fully functional REST CRUD API** using Spring Boot, PostgreSQL, and Java 21.
 * Follows **best practices**: separation of controller/service/repository, usage of DTOs, exception handling, readable code.
