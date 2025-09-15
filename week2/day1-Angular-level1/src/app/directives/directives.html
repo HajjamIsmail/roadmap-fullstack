@@ -1,0 +1,8 @@
+<p *ngIf="show">this message is visible</p>
+
+<ul>
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+
+<p [ngClass]="{highlight: isHighlighted}">this txt with class conditionnal</p>
+<p [ngStyle]="{color: color}">txt colored</p>
