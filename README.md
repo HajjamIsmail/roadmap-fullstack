@@ -22,8 +22,8 @@ roadmap-fullstack/
 │  ├─ day3-java/ -> Java 21 records, switch, streams ✅
 │  ├─ day4-http/ -> HTTP/REST concepts, /hello endpoint ✅
 │  ├─ day5-tests/ -> JUnit 5, simple tests ✅
-│  ├─ day6-miniapi/ -> Notes CRUD with :contentReference[oaicite:1]{index=1} ✅
-│  └─ day7-cicd/ -> :contentReference[oaicite:2]{index=2} (build + test) ✅
+│  ├─ day6-miniapi/ -> Notes CRUD with Spring Boot ✅
+│  └─ day7-cicd/ -> GitHub Actions (build + test) ✅
 │
 ├─ week2/ -> Frontend with Angular ⚙️
 │  ├─ day1-Angular-level1/ -> Fundamentals ⚙️
