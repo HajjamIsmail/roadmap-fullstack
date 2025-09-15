@@ -22,8 +22,18 @@ roadmap-fullstack/
 │  ├─ day3-java/ -> Java 21 records, switch, streams ✅
 │  ├─ day4-http/ -> HTTP/REST concepts, /hello endpoint ✅
 │  ├─ day5-tests/ -> JUnit 5, simple tests ✅
-│  ├─ day6-miniapi/ -> Notes CRUD with Spring Boot ✅
-│  └─ day7-cicd/ -> GitHub Actions (build + test) ✅
+│  ├─ day6-miniapi/ -> Notes CRUD with :contentReference[oaicite:1]{index=1} ✅
+│  └─ day7-cicd/ -> :contentReference[oaicite:2]{index=2} (build + test) ✅
+│
+├─ week2/ -> Frontend with Angular — Level 1 (Fundamentals)
+│  ├─ day1-Angular-level1/ -> Fundamentals
+│  ├─ day2-Angular-level2/ -> Dynamic App & Backend Integration
+│  ├─ day3-Angular-level3/ -> Production & Best Practices
+│  ├─ day4-Java21/ -> CompletableFuture, Advanced Streams
+│  ├─ day5-http/ -> Stateless vs stateful, CORS
+│  ├─ day6-mini-project/ -> In-memory persisted Notes API
+│  └─ day7-cicd/ -> Pipeline with tests + report
 │
 └─ README.md -> Complete project documentation
+
 ```
