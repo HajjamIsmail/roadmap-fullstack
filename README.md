@@ -27,7 +27,7 @@ roadmap-fullstack/
 │
 ├─ week2/ -> Frontend with Angular ⚙️
 │  ├─ day1-Angular-level1/ -> Fundamentals ✅
-│  ├─ day2-Angular-level2/ -> Dynamic App & Backend Integration ⚙️
+│  ├─ day2-Angular-level2/ -> Dynamic App & Backend Integration ✅
 │  ├─ day3-Angular-level3/ -> Production & Best Practices ⚙️
 │  ├─ day4-Java21/ -> CompletableFuture, Advanced Streams ⚙️
 │  ├─ day5-http/ -> Stateless vs stateful, CORS ⚙️
